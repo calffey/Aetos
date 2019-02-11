@@ -3,14 +3,14 @@ services:
   - docker
 
 script:
-  - docker build -t projectaetos/aetos ./server
-  - docker images projectaetos/aetos
+  - docker build -t projectaetos/aetos-server /server
+  - docker images projectaetos/aetos-server /server
 
 before_deploy:
   - docker login -u jaycog44 -p 9335Dqi2W2n2uDs
 
 deploy:
   provider: script
-  script: docker push projectaetos/aetos
+  script: docker push projectaetos/aetos-server 
   on:
     branch: master
