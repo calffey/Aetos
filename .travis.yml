@@ -2,9 +2,11 @@
 services:
   - docker
 
+before_script: cd server
+
 script:
-  - docker build -t projectaetos/aetos-server /server
-  - docker images projectaetos/aetos-server /server
+  - docker build -t projectaetos/aetos-server .
+  - docker images projectaetos/aetos-server .
 
 before_deploy:
   - docker login -u jaycog44 -p 9335Dqi2W2n2uDs
