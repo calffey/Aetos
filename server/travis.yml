@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build -t projectaetos/aetos .
+  - docker images projectaetos/aetos
+
+before_deploy:
+  - docker login -u jaycog44 -p 9335Dqi2W2n2uDs
+
+deploy:
+  provider: script
+  script: docker push projectaetos/aetos
+  on:
+    branch: master
