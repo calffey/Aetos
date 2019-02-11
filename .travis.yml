@@ -3,7 +3,7 @@ services:
   - docker
 
 script:
-  - docker build -t projectaetos/aetos .
+  - docker build -t projectaetos/aetos ./server
   - docker images projectaetos/aetos
 
 before_deploy:
