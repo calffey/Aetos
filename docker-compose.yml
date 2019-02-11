@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  server:
+    build: ./server
+    command: npm start
+    volumes:
+      - ./server:/usr/src/server/
+    ports: 
+      - 3477:3477
+
