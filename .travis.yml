@@ -1,10 +1,12 @@
- sudo: required
+sudo: required
 services:
   - docker
 
 script:
   - docker build -t projectaetos/aetos-server ./server
   - docker images projectaetos/aetos-server
+  
+after_failure: $TRAVIS_TEST_RESULT
 
 before_deploy:
   - docker login -u jaycog44 -p 9335Dqi2W2n2uDs
