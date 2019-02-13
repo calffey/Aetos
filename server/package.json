@@ -19,8 +19,9 @@
   "homepage": "https://github.com/Project-Aetos/Aetos#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
