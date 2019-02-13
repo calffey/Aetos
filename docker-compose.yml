@@ -9,3 +9,12 @@ services:
     ports: 
       - 3477:3477
 
+  # client:
+  #   build: ./client
+  #   command: react-native run-ios
+  #   volumes:
+  #     - ./client:/usr/src/client/
+  #   ports: 
+  #     - 7743:7743
+
+
