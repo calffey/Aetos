@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 
+const cors = require('cors');
 
 const app = express();
 
@@ -11,6 +12,20 @@ app.use(bodyParser.urlencoded({extended: true}));
 const PORT = 3477;
 const apiKey = 'Bearer eyJrIjoiME9ZUTE5SzZDcDdRMkgzWmQ3MW1MdldIeTNPRkVOd3EiLCJuIjoidGVzdGluZyIsImlkIjoxfQ==';
 const grafurl = 'http://35.232.120.147/api/datasources/proxy/1/api/v1/query_range?';
+
+const data = [
+    { time: 1, pods: 3 },
+    { time: 2, pods: 2 },
+    { time: 3, pods: 3 },
+    { time: 4, pods: 1 },
+    { time: 5, pods: 2 },
+    { time: 6, pods: 3 },
+    { time: 7, pods: 4 },
+    { time: 8, pods: 3 }
+]
+
+app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Welcome back Aetos working with jarvis');
@@ -79,6 +94,10 @@ app.get('/networktraffic', (req, res) => {
             console.log(JSON.parse(body));
             res.json(JSON.parse(body));
     });
+});
+
+app.get('/data', (req, res) => {
+    res.json(data);
 });
 
 app.listen(PORT, () => console.log(`AETOS node server is listening on PORT: ${PORT}`));
