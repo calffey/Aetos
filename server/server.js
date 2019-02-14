@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-
-
 const cors = require('cors');
+const queryController = require('./queryController.js')
 
 const app = express();
 
@@ -99,5 +98,24 @@ app.get('/networktraffic', (req, res) => {
 app.get('/data', (req, res) => {
     res.json(data);
 });
+
+app.get('/cpuusage2', queryController.getCpu, (req, res) => {
+  res.send('hello world cpus' + JSON.stringify(res.locals));
+});
+
+app.get('/networktraffic2', queryController.getNetworkTraffic, (req, res) => {
+    res.send('hello cpus' + JSON.stringify(res.locals));
+});
+
+app.get('/memusage2', queryController.getMemUsage, (req, res) => {
+    res.send('hello cpus' + JSON.stringify(res.locals));
+});
+
+app.get('/nodecount2', queryController.getNodeCount, (req, res) => {
+    res.send('hello cpus' + JSON.stringify(res.locals));
+});
+
+
+
 
 app.listen(PORT, () => console.log(`AETOS node server is listening on PORT: ${PORT}`));
