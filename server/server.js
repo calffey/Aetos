@@ -6,8 +6,15 @@ const queryController = require('./queryController.js')
 const app = express();
 const PORT = 3477;
 
+app.set('etag', false)
+
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    next()
+});
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get('/', (req, res) => {
