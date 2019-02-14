@@ -101,7 +101,7 @@ export default class DashboardScreen extends Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(this.getData, 5000);
+        this.interval = setInterval(this.getData, 15000);
     }
 
 

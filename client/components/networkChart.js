@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         paddingBottom: 10,
         marginBottom: 10,
-        borderTopColor: '#ff7575',
+        borderTopColor: '#076280',
         borderTopWidth: 5,
         borderBottomColor: '#ddd',
         borderBottomWidth: 1,
@@ -105,13 +105,13 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         fontSize: 18,
         textTransform: 'uppercase',
-        color: '#ff7575'
+        color: '#076280'
     },
 });
 
 const aetosLineTheme = {
     data: {
-        stroke: '#ff7575',
+        stroke: '#076280',
         strokeWidth: 1
     },
     parent: {
