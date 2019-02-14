@@ -1,114 +1,142 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View, FlatList, ScrollView, ActivityIndicator } from "react-native";
+import CpuUsageChart from '../components/cpuUsageChart';
+import MemUsageChart from '../components/memUsageChart';
+
 import {
-  VictoryLine,
-  VictoryChart,
-  VictoryTheme,
-  VictoryBar,
-  VictoryPolarAxis
-} from "victory-native";
+    Container,
+    Header,
+    Content,
+    Card,
+    CardItem,
+    Thumbnail,
+    Button,
+    Icon,
+    Left,
+    Body,
+    List
+} from "native-base";
 
 export default class DashboardScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cpuUsage: null,
-      memUsage: null,
-      networkTraffic: null,
-      nodeCount: null
-    };
-  }
-  componentDidMount() {
-    const dataFetch = [
-      fetch("http://localhost:3477/cpuusage")
-        .then(data => data.json())
-        .then(json => {
-          let dataArray = [];
-          json.data.result[0].values.forEach(val => {
-            val = { x: val[0], y: Number(val[1]) };
-            dataArray.push(val);
-          });
-          return dataArray;
-        })
-        .then(objData => objData)
-        .catch(err => console.log(err)),
+    constructor(props) {
+        super(props);
+        this.state = {
+            cpuUsage: null,
+            memUsage: null,
+            networkTraffic: null,
+            nodeCount: null,
+            isLoading: true
+        };
+    }
+    componentDidMount() {
+        const dataFetch = [
+            fetch("http://localhost:3477/cpuusage")
+                .then(data => data.json())
+                .then(json => {
+                    let dataArray = [];
+                    let lastItem;
+                    json.data.result[0].values.forEach((val, i) => {
+                        lastItem = val[1];
+                        val = { x: val[0], y: Number(val[1] * 100000) };
+                        dataArray.push(val);
+                    });
+                    console.log(lastItem);
+                    return dataArray;
+                })
+                .catch(err => console.log(err)),
 
-      fetch("http://localhost:3477/memusage")
-        .then(data => data.json())
-        .then(json => {
-          let dataArray = [];
-          json.data.result[0].values.forEach(val => {
-            val = { x: val[0], y: Number(val[1]) };
-            dataArray.push(val);
-          });
-          return dataArray;
-        })
-        .then(objData => objData)
-        .catch(err => console.log(err)),
-      fetch("http://localhost:3477/networktraffic")
-        .then(data => data.json())
-        .then(json => {
-          let dataArray = [];
-          json.data.result[0].values.forEach(val => {
-            val = { x: val[0], y: Number(val[1]) };
-            dataArray.push(val);
-          });
-          return dataArray;
-        })
-        .then(objData => objData)
-        .catch(err => console.log(err)),
-      fetch("http://localhost:3477/nodecount")
-        .then(data => data.json())
-        .then(json => {
-          let dataArray = [];
-          json.data.result[0].values.forEach(val => {
-            val = { x: val[0], y: Number(val[1]) };
-            dataArray.push(val);
-          });
-          return dataArray;
-        })
-        .then(objData => {
-          return objData;
-        })
-        .catch(err => console.log(err))
-    ];
+            fetch("http://localhost:3477/memusage")
+                .then(data => data.json())
+                .then(json => {
+                    let dataArray = [];
+                    json.data.result[0].values.forEach(val => {
+                        val = { x: val[0], y: Number(val[1] * 100) };
+                        dataArray.push(val);
+                    });
+                    return dataArray;
+                })
+                .catch(err => console.log(err)),
+            fetch("http://localhost:3477/networktraffic")
+                .then(data => data.json())
+                .then(json => {
+                    let dataArray = [];
+                    json.data.result[0].values.forEach(val => {
+                        val = { x: val[0], y: Number(val[1]) };
+                        dataArray.push(val);
+                    });
+                    return dataArray;
+                })
+                .catch(err => console.log(err)),
+            fetch("http://localhost:3477/nodecount")
+                .then(data => data.json())
+                .then(json => {
+                    let dataArray = [];
+                    json.data.result[0].values.forEach(val => {
+                        val = { x: val[0], y: Number(val[1]) };
+                        dataArray.push(val);
+                    });
+                    return dataArray;
+                })
+                .catch(err => console.log(err))
+        ];
 
-    Promise.all(dataFetch)
-      .then(val => {
-        console.log(val);
-        this.setState({
-          cpuUsage: val[0],
-          memUsage: val[1],
-          networkTraffic: val[2],
-          nodeCount: val[3]
-        });
-      })
-      .catch(err => console.log(err));
-  }
+        Promise.all(dataFetch)
+            .then(val => {
+                this.setState({
+                    cpuUsage: val[0],
+                    memUsage: val[1],
+                    networkTraffic: val[2],
+                    nodeCount: val[3],
+                    isLoading: false
+                });
+            })
+            .catch(err => console.log(err));
+    }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        {this.state.cpuUsage && (
-          <VictoryChart style={styles.chart} theme={VictoryTheme.material}>
-            <VictoryLine data={this.state.cpuUsage} />
-          </VictoryChart>
-        )}
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                {this.state.isLoading ? (
+                    <View style={[styles.indicatorContainer, styles.horizontal]}>
+                        <ActivityIndicator size="large" color="#0000ff" />
+                    </View>
+                ) : (
+                        <ScrollView>
+                            {Object.keys(this.state).map((dataType, i) => {
+                                if (dataType === 'cpuUsage') {
+                                    return (
+                                        <View key={i}>
+                                            <CpuUsageChart data={this.state[dataType]} />
+                                        </View>
+                                    )
+                                } else if (dataType === 'memUsage') {
+                                    return (
+                                        <View key={i}>
+                                            <MemUsageChart data={this.state[dataType]} />
+                                        </View>
+                                    )
+                                }
+                            })}
+                        </ScrollView>
+
+                    )}
+
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  }
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        alignItems: "center",
+        backgroundColor: "#f5f5f5"
+    },
+    indicatorContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 0
+    }
 });
