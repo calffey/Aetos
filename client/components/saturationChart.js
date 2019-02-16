@@ -29,7 +29,6 @@ export default class SaturationChart extends Component {
         return (
             <View>
                 <View style={styles.headerWrapper}>
-<<<<<<< HEAD
                     <Text style={styles.header}>
                         Saturation
                         <Button
@@ -38,9 +37,6 @@ export default class SaturationChart extends Component {
                         // onPress={this.props.updateTime}
                         />
                     </Text>
-=======
-                    <Text style={styles.header}>Saturation</Text>
->>>>>>> master
                 </View>
                 <VictoryChart
                     responsive={true}
