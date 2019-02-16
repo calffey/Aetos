@@ -11,7 +11,7 @@ import {
     VictoryBrushContainer
 } from "victory-native";
 
-export default class MemUsageChart extends Component {
+export default class NetworkChart extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -29,7 +29,7 @@ export default class MemUsageChart extends Component {
         return (
             <View>
                 <View style={styles.headerWrapper}>
-                    <Text style={styles.header}>Memory Usage</Text>
+                    <Text style={styles.header}>Network Usage</Text>
                 </View>
                 <VictoryChart
                     responsive={true}
@@ -43,8 +43,9 @@ export default class MemUsageChart extends Component {
                         />
                     }
                 >
-                    <VictoryAxis dependentAxis
-                        tickFormat={(x) => (x * 100).toFixed(1) + '%'}
+                    <VictoryAxis
+                        dependentAxis
+                        tickFormat={(x) => x + 'kb/s'}
                     />
                     <VictoryAxis
                         tickFormat={(x) => {
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         paddingBottom: 10,
         marginBottom: 10,
-        borderTopColor: '#ff7575',
+        borderTopColor: '#076280',
         borderTopWidth: 5,
         borderBottomColor: '#ddd',
         borderBottomWidth: 1,
@@ -104,13 +105,13 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         fontSize: 18,
         textTransform: 'uppercase',
-        color: '#ff7575'
+        color: '#076280'
     },
 });
 
 const aetosLineTheme = {
     data: {
-        stroke: '#ff7575',
+        stroke: '#076280',
         strokeWidth: 1
     },
     parent: {

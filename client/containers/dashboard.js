@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, FlatList, ScrollView, ActivityIndicator } from "react-native";
 import CpuUsageChart from '../components/cpuUsageChart';
 import MemUsageChart from '../components/memUsageChart';
+import NetworkChart from '../components/networkChart';
+import SaturationChart from '../components/saturationChart';
 
 import {
     Container,
@@ -27,12 +29,16 @@ export default class DashboardScreen extends Component {
             nodeCount: null,
             isLoading: true
         };
+
+        this.getData = this.getData.bind(this);
     }
-    componentDidMount() {
-        const dataFetch = [
+
+    getData() {
+        let dataFetch = [
             fetch("http://localhost:3477/cpuusage")
                 .then(data => data.json())
                 .then(json => {
+                    console.log('cpu');
                     let dataArray = [];
                     let lastItem;
                     json.data.result[0].values.forEach((val, i) => {
@@ -45,12 +51,12 @@ export default class DashboardScreen extends Component {
                 })
                 .catch(err => console.log(err)),
 
-            fetch("http://localhost:3477/memusage")
+            fetch("http://localhost:3477/memoryutilization")
                 .then(data => data.json())
                 .then(json => {
                     let dataArray = [];
                     json.data.result[0].values.forEach(val => {
-                        val = { x: val[0], y: Number(val[1] * 100) };
+                        val = { x: val[0], y: Number(val[1]) };
                         dataArray.push(val);
                     });
                     return dataArray;
@@ -67,7 +73,7 @@ export default class DashboardScreen extends Component {
                     return dataArray;
                 })
                 .catch(err => console.log(err)),
-            fetch("http://localhost:3477/nodecount")
+            fetch("http://localhost:3477/saturation")
                 .then(data => data.json())
                 .then(json => {
                     let dataArray = [];
@@ -82,15 +88,26 @@ export default class DashboardScreen extends Component {
 
         Promise.all(dataFetch)
             .then(val => {
+                console.log('hit', val[0][val[0].length - 1]);
                 this.setState({
                     cpuUsage: val[0],
                     memUsage: val[1],
                     networkTraffic: val[2],
-                    nodeCount: val[3],
+                    saturation: val[3],
                     isLoading: false
                 });
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(this.getData, 15000);
+    }
+
+
+    componentWillUnmount() {
+        // Clear the interval right before component unmount
+        clearInterval(this.interval);
     }
 
     render() {
@@ -113,6 +130,18 @@ export default class DashboardScreen extends Component {
                                     return (
                                         <View key={i}>
                                             <MemUsageChart data={this.state[dataType]} />
+                                        </View>
+                                    )
+                                } else if (dataType === 'networkTraffic') {
+                                    return (
+                                        <View key={i}>
+                                            <NetworkChart data={this.state[dataType]} />
+                                        </View>
+                                    )
+                                } else if (dataType === 'saturation') {
+                                    return (
+                                        <View key={i}>
+                                            <SaturationChart data={this.state[dataType]} />
                                         </View>
                                     )
                                 }
