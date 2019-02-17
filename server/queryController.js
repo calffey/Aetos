@@ -1,7 +1,6 @@
 const request = require('request');
-
-const apiKey = 'Bearer eyJrIjoiME9ZUTE5SzZDcDdRMkgzWmQ3MW1MdldIeTNPRkVOd3EiLCJuIjoidGVzdGluZyIsImlkIjoxfQ==';
-const grafurl = 'http://35.232.120.147/api/datasources/proxy/1/api/v1/query_range?';
+const apiKey = process.env.API_KEY;
+const grafurl = process.env.API_URL;
 
 const reqHeader = {
     Accept: 'application/json',
