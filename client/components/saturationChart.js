@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import {
     VictoryLine,
     VictoryChart,
@@ -29,14 +29,12 @@ export default class SaturationChart extends Component {
         return (
             <View>
                 <View style={styles.headerWrapper}>
-                    <Text style={styles.header}>
-                        Saturation
-                        <Button
-                            title='time'
-                            color='#ff8300'
-                        // onPress={this.props.updateTime}
-                        />
-                    </Text>
+                    <Text style={styles.header}>Saturation</Text>
+                    <Button
+                        title='time'
+                        color='#ff8300'
+                        onPress={this.props.updateGraph}
+                    />
                 </View>
                 <VictoryChart
                     responsive={true}
