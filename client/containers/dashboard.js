@@ -31,9 +31,10 @@ export default class DashboardScreen extends Component {
         };
 
         this.getData = this.getData.bind(this);
+        this.updateGraph = this.updateGraph.bind(this);
     }
 
-    getData() {
+    getData(...typeID) {
         let dataFetch = [
             fetch("http://localhost:3477/cpuusage")
                 .then(data => data.json())
@@ -46,7 +47,6 @@ export default class DashboardScreen extends Component {
                         val = { x: val[0], y: Number(val[1] * 100000) };
                         dataArray.push(val);
                     });
-                    console.log(lastItem);
                     return dataArray;
                 })
                 .catch(err => console.log(err)),
@@ -85,23 +85,30 @@ export default class DashboardScreen extends Component {
                 })
                 .catch(err => console.log(err))
         ];
-
-        Promise.all(dataFetch)
+        console.log(typeID);
+        Promise.all(typeID.length ? [dataFetch[typeID[0]]] : dataFetch)
             .then(val => {
-                console.log('hit', val[0][val[0].length - 1]);
-                this.setState({
-                    cpuUsage: val[0],
-                    memUsage: val[1],
-                    networkTraffic: val[2],
-                    saturation: val[3],
-                    isLoading: false
-                });
+                const graphArr = ['cpuUsage', 'memUsage', 'networkTraffic', 'saturation'];
+
+                this.setState((prevState) => {
+                    const newState = {};
+                    val.forEach((v, i) => {
+                        newState[graphArr[typeID.length ? typeID[0] : i]] = v;
+                    });
+                    return { ...prevState, ...newState, isLoading: false }
+                })
             })
             .catch(err => console.log(err))
     }
 
+    updateGraph() {
+        console.log('hit update');
+        this.getData(0);
+    }
+
     componentDidMount() {
-        this.interval = setInterval(this.getData, 15000);
+        console.log('hit');
+        this.getData();
     }
 
 
@@ -123,25 +130,37 @@ export default class DashboardScreen extends Component {
                                 if (dataType === 'cpuUsage') {
                                     return (
                                         <View key={i}>
-                                            <CpuUsageChart data={this.state[dataType]} />
+                                            <CpuUsageChart
+                                                data={this.state[dataType]}
+                                                updateGraph={this.updateGraph}
+                                            />
                                         </View>
                                     )
                                 } else if (dataType === 'memUsage') {
                                     return (
                                         <View key={i}>
-                                            <MemUsageChart data={this.state[dataType]} />
+                                            <MemUsageChart
+                                                data={this.state[dataType]}
+                                                updateGraph={this.updateGraph}
+                                            />
                                         </View>
                                     )
                                 } else if (dataType === 'networkTraffic') {
                                     return (
                                         <View key={i}>
-                                            <NetworkChart data={this.state[dataType]} />
+                                            <NetworkChart
+                                                data={this.state[dataType]}
+                                                updateGraph={this.updateGraph}
+                                            />
                                         </View>
                                     )
                                 } else if (dataType === 'saturation') {
                                     return (
                                         <View key={i}>
-                                            <SaturationChart data={this.state[dataType]} />
+                                            <SaturationChart
+                                                data={this.state[dataType]}
+                                                updateGraph={this.updateGraph}
+                                            />
                                         </View>
                                     )
                                 }
