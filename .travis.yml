@@ -9,7 +9,7 @@ script:
 after_failure: $TRAVIS_TEST_RESULT
 
 before_deploy:
-  - docker login -u DOCKER_USER -p DOCKER_PASS
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
 
 deploy:
   provider: script
