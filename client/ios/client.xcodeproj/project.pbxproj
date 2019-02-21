@@ -48,7 +48,6 @@
 		345909A026694446B5577BA3 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB37001DB60C43CD883A4906 /* rubicon-icon-font.ttf */; };
 		4223B08042A6472EA1F0B8D0 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD31EB94365417491CDF73F /* libRNSVG.a */; };
 		4FB2B26F0BBF4CDEAD473CA8 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C7CCE93684579826910EA /* FontAwesome5_Brands.ttf */; };
-		6A15669E2216164C006CA4C7 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A15669B2216161E006CA4C7 /* libRCTPushNotification.a */; };
 		6C2BA58FCEE5448C97155FB7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAFF93086AF8481C881910A7 /* MaterialIcons.ttf */; };
 		7BAF5D2548404F129EB75DD8 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 173C5D6B06144AAF8A5DBA8A /* Roboto.ttf */; };
 		7C1F2545EF29411899367453 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35BE71D9E5594D2DBF6E8BEE /* Octicons.ttf */; };
@@ -289,20 +288,6 @@
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
 		};
-		6A15669A2216161E006CA4C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6A1566952216161E006CA4C7 /* RCTPushNotification.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTPushNotification;
-		};
-		6A15669C2216161E006CA4C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6A1566952216161E006CA4C7 /* RCTPushNotification.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D05745F1DE6004600184BB4;
-			remoteInfo = "RCTPushNotification-tvOS";
-		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -409,7 +394,6 @@
 		5CF9933A2EA44E808094325F /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6A15667022161239006CA4C7 /* client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = client.entitlements; path = client/client.entitlements; sourceTree = "<group>"; };
-		6A1566952216161E006CA4C7 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D475BC289E6487283D54321 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -444,7 +428,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A15669E2216164C006CA4C7 /* libRCTPushNotification.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -652,15 +635,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		6A1566962216161E006CA4C7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6A15669B2216161E006CA4C7 /* libRCTPushNotification.a */,
-				6A15669D2216161E006CA4C7 /* libRCTPushNotification-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,7 +647,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				6A1566952216161E006CA4C7 /* RCTPushNotification.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -910,10 +883,6 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-				},
-				{
-					ProductGroup = 6A1566962216161E006CA4C7 /* Products */;
-					ProjectRef = 6A1566952216161E006CA4C7 /* RCTPushNotification.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1163,20 +1132,6 @@
 			fileType = archive.ar;
 			path = libRCTAnimation.a;
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6A15669B2216161E006CA4C7 /* libRCTPushNotification.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTPushNotification.a;
-			remoteRef = 6A15669A2216161E006CA4C7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6A15669D2216161E006CA4C7 /* libRCTPushNotification-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTPushNotification-tvOS.a";
-			remoteRef = 6A15669C2216161E006CA4C7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
