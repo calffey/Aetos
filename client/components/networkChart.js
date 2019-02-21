@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import {
     VictoryLine,
     VictoryChart,
@@ -30,6 +30,11 @@ export default class NetworkChart extends Component {
             <View>
                 <View style={styles.headerWrapper}>
                     <Text style={styles.header}>Network Usage</Text>
+                    <Button
+                        title='time'
+                        color='#ff8300'
+                        onPress={this.props.updateGraph}
+                    />
                 </View>
                 <VictoryChart
                     responsive={true}
