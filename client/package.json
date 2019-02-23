@@ -12,7 +12,6 @@
     "react": "16.6.3",
     "react-native": "0.58.4",
     "react-native-gesture-handler": "^1.0.15",
-    "react-native-google-signin": "^1.2.0",
     "react-native-push-notification": "^3.1.2",
     "react-native-router-flux": "^3.35.0",
     "react-native-svg": "^9.2.4",
