@@ -10,8 +10,7 @@ class LoginForm extends Component {
   componentDidMount() {
     GoogleSignin.configure({
       scopes: ["https://apis.google.com/js/platform.js"], // what API you want to access on behalf of the user, default is email and profile
-      iosClientId:
-        "239528451353-7l65tj20oqp1kuntf183sl6jecp2qt60.apps.googleusercontent.com"
+      iosClientId: ""
       // "239528451353-lncotgbbmu7v150iiio499sfrv80un7i.apps.googleusercontent.com" // client ID of type WEB for your server
     });
   }
