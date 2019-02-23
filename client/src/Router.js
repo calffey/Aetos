@@ -1,8 +1,8 @@
 import React from "react";
 import { Scene, Router } from "react-native-router-flux";
-import LoginForm from "./components/LoginForm";
-import DashBoard from "./components/DashBoard";
-import SignupForm from "./components/SignupForm";
+import LoginForm from "./containers/LoginForm";
+import DashBoard from "./containers/DashBoard";
+import SignupForm from "./containers/SignupForm";
 import { Icon } from "native-base";
 
 const RouterComponent = () => {
