@@ -4,8 +4,17 @@ import { connect } from "react-redux";
 import { emailChanged, passwordChanged, loginUser } from "../actions";
 import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
+import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
 
 class LoginForm extends Component {
+  componentDidMount() {
+    GoogleSignin.configure({
+      scopes: ["https://apis.google.com/js/platform.js"], // what API you want to access on behalf of the user, default is email and profile
+      iosClientId:
+        "239528451353-7l65tj20oqp1kuntf183sl6jecp2qt60.apps.googleusercontent.com"
+      // "239528451353-lncotgbbmu7v150iiio499sfrv80un7i.apps.googleusercontent.com" // client ID of type WEB for your server
+    });
+  }
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -17,6 +26,16 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
+  }
+
+  isSignIn() {
+    console.log("google");
+
+    console.log("why");
+  }
+
+  isSigninInProgress() {
+    return <Spinner size="large" />;
   }
 
   renderError() {
@@ -42,6 +61,15 @@ class LoginForm extends Component {
         <View style={{ height: 50 }}>
           <Button onPress={() => Actions.signup()}>Signup</Button>
         </View>
+
+        <GoogleSigninButton
+          style={{
+            height: 48
+          }}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={() => this.isSignIn()}
+        />
       </View>
     );
   }
