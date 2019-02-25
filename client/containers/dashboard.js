@@ -7,37 +7,38 @@ import SaturationChart from "../components/saturationChart";
 
 export default class DashboardScreen extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      cpuUsage: null,
-      memUsage: null,
-      networkTraffic: null,
-      nodeCount: null,
-      isLoading: true
-    };
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       cpuUsage: null,
+//       memUsage: null,
+//       networkTraffic: null,
+//       nodeCount: null,
+//       isLoading: true
+//     };
 
-    this.getData = this.getData.bind(this);
-  }
+//     this.getData = this.getData.bind(this);
+//   }
 
-  getData() {
-    let dataFetch = [
-      fetch("http://localhost:3477/cpuusage")
-        .then(data => data.json())
-        .then(json => {
-          console.log("cpu");
-          let dataArray = [];
-          let lastItem;
-          json.data.result[0].values.forEach((val, i) => {
-            lastItem = val[1];
-            val = { x: val[0], y: Number(val[1] * 100000) };
-            dataArray.push(val);
-          });
-          console.log(lastItem);
-          return dataArray;
-        })
-        .catch(err => console.log(err)),
-=======
+//   getData() {
+//     let dataFetch = [
+//       fetch("http://localhost:3477/cpuusage")
+//         .then(data => data.json())
+//         .then(json => {
+//           console.log("cpu");
+//           let dataArray = [];
+//           let lastItem;
+//           json.data.result[0].values.forEach((val, i) => {
+//             lastItem = val[1];
+//             val = { x: val[0], y: Number(val[1] * 100000) };
+//             dataArray.push(val);
+//           });
+//           console.log(lastItem);
+//           return dataArray;
+//         })
+//         .catch(err => console.log(err)),
+// =======
+
     constructor(props) {
         super(props);
         this.state = {
@@ -182,7 +183,7 @@ export default class DashboardScreen extends Component {
   componentDidMount() {
     this.interval = setInterval(this.getData, 15000);
   }
-=======
+// =======
     render() {
         return (
             <View style={styles.container}>

@@ -26,13 +26,12 @@ const INTIAL_STATE = {
   isLoading: true
 };
 
-export default (state = INTIAL_STATE, action) => {
-  console.log(action);
+export default function authReducer(state = INTIAL_STATE, action){
   switch (action.type) {
     case EMAIL_CHANGED:
       return {
         ...state,
-        email: action.payload
+        email: action.payload,
       };
 
     case PASSWORD_CHANGED:
@@ -40,6 +39,7 @@ export default (state = INTIAL_STATE, action) => {
         ...state,
         password: action.payload
       };
+
     case SIGNUP_USER_SUCCESS:
       return {
         ...state,
@@ -48,18 +48,21 @@ export default (state = INTIAL_STATE, action) => {
         email: "",
         password: ""
       };
+
     case SIGNUP_USER:
       return {
         ...state,
         loading: true,
         error: ""
       };
+
     case SIGNUP_USER_FAIL:
       return {
         ...state,
         signupError: "password must be at least 6 characters",
         loading: false
       };
+
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
@@ -68,21 +71,26 @@ export default (state = INTIAL_STATE, action) => {
         email: "",
         password: ""
       };
+
     case LOGIN_USER_FAIL:
       return { ...state, error: "Authentication Failed.", loading: false };
+
     case LOGIN_USER:
       return {
         ...state,
         loading: true,
         error: ""
       };
+
     case FETCH_METRICS_FAIL:
       return { ...state, isLoading: true };
+
     case FETCH_METRICS:
       return {
         ...state,
         isLoading: true
       };
+
     case FETCH_METRICS_SUCCESS:
       return {
         ...state,
@@ -92,6 +100,7 @@ export default (state = INTIAL_STATE, action) => {
         saturation: action.payload[3],
         isLoading: false
       };
+
     default:
       return state;
   }

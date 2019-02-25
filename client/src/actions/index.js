@@ -39,11 +39,11 @@ export const signupUser = ({ email, password }) => {
   };
 };
 
-const signupUserFail = dispatch => {
+export const signupUserFail = dispatch => {
   dispatch({ type: SIGNUP_USER_FAIL });
 };
 
-const signinUserSuccess = (dispatch, user) => {
+export const signinUserSuccess = (dispatch, user) => {
   dispatch({
     type: SIGNUP_USER_SUCCESS,
     payload: user
@@ -62,10 +62,11 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-const loginUserFail = dispatch => {
+export const loginUserFail = dispatch => {
   dispatch({ type: LOGIN_USER_FAIL });
 };
-const loginUserSuccess = (dispatch, user) => {
+
+export const loginUserSuccess = (dispatch, user) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
     payload: user
@@ -138,10 +139,11 @@ export const fetchMetrics = () => {
   };
 };
 
-const fetchMetricsFail = dispatch => {
+export const fetchMetricsFail = dispatch => {
   dispatch({ type: FETCH_METRICS_FAIL });
 };
-const fetchMetricsSuccess = (dispatch, data) => {
+
+export const fetchMetricsSuccess = (dispatch, data) => {
   dispatch({
     type: FETCH_METRICS_SUCCESS,
     payload: data
