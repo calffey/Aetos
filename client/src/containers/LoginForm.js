@@ -4,16 +4,9 @@ import { connect } from "react-redux";
 import { emailChanged, passwordChanged, loginUser } from "../actions";
 import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
-// import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
 
 class LoginForm extends Component {
-  componentDidMount() {
-    // GoogleSignin.configure({
-    //   scopes: ["https://apis.google.com/js/platform.js"], // what API you want to access on behalf of the user, default is email and profile
-    //   iosClientId: ""
-    //   // "239528451353-lncotgbbmu7v150iiio499sfrv80un7i.apps.googleusercontent.com" // client ID of type WEB for your server
-    // });
-  }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
