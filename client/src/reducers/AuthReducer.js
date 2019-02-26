@@ -9,12 +9,16 @@ import {
   LOGIN_USER,
   FETCH_METRICS_SUCCESS,
   FETCH_METRICS_FAIL,
-  FETCH_METRICS
+  FETCH_METRICS,
+  URL_ENTRY,
+  API_KEY_ENTRY
 } from "../actions/actionTypes";
 
 const INTIAL_STATE = {
   email: "",
   password: "",
+  api: "",
+  url:"",
   user: null,
   error: "",
   signupError: "",
@@ -39,6 +43,16 @@ export default (state = INTIAL_STATE, action) => {
       return {
         ...state,
         password: action.payload
+      };
+    case API_KEY_ENTRY:
+     return {
+       ...state,
+       api: action.payload
+     };
+    case URL_ENTRY: 
+      return {
+        ...state,
+        url: action.payload
       };
     case SIGNUP_USER_SUCCESS:
       return {

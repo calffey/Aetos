@@ -10,7 +10,7 @@ import { fetchMetrics } from "../actions";
 
 class DashBoard extends Component {
   componentDidMount() {
-    this.props.fetchMetrics();
+    //this.props.fetchMetrics();
   }
   render() {
     console.log(this.props, "dasssssshhshhshshyyyy");

@@ -5,7 +5,7 @@ const request = require("request");
 const cors = require("cors");
 const queryController = require("./queryController.js");
 const app = express();
-const PORT = 3477;
+const PORT = process.env.PORT;
 
 app.set("etag", false);
 

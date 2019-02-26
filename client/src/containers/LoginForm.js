@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card, CardSection, Input, Button, Spinner } from "./common";
 import { connect } from "react-redux";
-import { emailChanged, passwordChanged, loginUser } from "../actions";
+import { emailChanged, passwordChanged, loginUser, fetchMetrics,apiEntry,urlEntry } from "../actions";
 import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 // import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
@@ -14,24 +14,29 @@ class LoginForm extends Component {
     //   // "239528451353-lncotgbbmu7v150iiio499sfrv80un7i.apps.googleusercontent.com" // client ID of type WEB for your server
     // });
   }
-  onEmailChange(text) {
-    this.props.emailChanged(text);
+  // onEmailChange(text) {
+  //   this.props.emailChanged(text);
+  // }
+
+  // onPasswordChange(text) {
+  //   this.props.passwordChanged(text);
+  // }
+
+  onAPIChange(text) {
+    this.props.apiEntry(text)
   }
 
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
+  onUrlChange(text) {
+    this.props.urlEntry(text)
   }
 
   onButtonPress() {
-    const { email, password } = this.props;
-    this.props.loginUser({ email, password });
+    const { api, url } = this.props;
+
+    this.props.fetchMetrics({api, url});
   }
 
-  isSignIn() {
-    console.log("google");
-
-    console.log("why");
-  }
+  
 
   isSigninInProgress() {
     return <Spinner size="large" />;
@@ -60,6 +65,12 @@ class LoginForm extends Component {
         <View style={{ height: 50 }}>
           <Button onPress={() => Actions.signup()}>Signup</Button>
         </View>
+        <CardSection>
+        <Input style={{ height: 90 }} value={'eyJrIjoiYmFnUmh5STVRM0xZTnljcDB4aGJ5akpsanRsa0M3RWMiLCJuIjoiYWRnZW5rZXkiLCJpZCI6MX0='} />
+        </CardSection>
+        <CardSection>
+        <Input style={{ height: 90 }} value={'http://35.232.120.147/api/datasources/proxy/1/api/v1/query_range?'} />
+        </CardSection>
       </View>
     );
   }
@@ -70,21 +81,24 @@ class LoginForm extends Component {
         <Card>
           <CardSection>
             <Input
-              label="Email"
-              placeholder="email@gmail.com"
-              onChangeText={this.onEmailChange.bind(this)}
-              value={this.props.email}
+              label="Grafana Url"
+              secureTextEntry
+              placeholder="Grafana Url"
+              onChangeText={this.onUrlChange.bind(this)}
+              value={this.props.url}
             />
+  
           </CardSection>
           {this.renderError()}
           <CardSection>
             <Input
-              onChangeText={this.onPasswordChange.bind(this)}
+              onChangeText={this.onAPIChange.bind(this)}
               secureTextEntry
-              label="Password"
-              placeholder="password"
-              value={this.props.password}
+              label="API Key"
+              placeholder="API Key"
+              value={this.props.api}
             />
+             
           </CardSection>
           {this.renderButton()}
         </Card>
@@ -102,12 +116,12 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
+  const { email, password, error, loading,api,url } = auth;
 
-  return { email, password, error, loading };
+  return { email, password, error, loading,api,url };
 };
 
 export default connect(
   mapStateToProps,
-  { emailChanged, passwordChanged, loginUser }
+  { emailChanged, passwordChanged,apiEntry,urlEntry, loginUser, fetchMetrics }
 )(LoginForm);
