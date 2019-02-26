@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Picker } from "react-native";
+import { Dropdown } from 'react-native-material-dropdown';
 import {
     VictoryLine,
     VictoryChart,
-    VictoryTheme,
-    VictoryBar,
     VictoryAxis,
-    Data,
     VictoryZoomContainer,
     VictoryBrushContainer
 } from "victory-native";
@@ -25,15 +23,28 @@ export default class NetworkChart extends Component {
         this.setState({ zoomDomain: domain });
     }
 
+    changeDropdown(value) {
+        this.props.changeTime(value, 'network');
+    }
+
     render() {
+        const ddData = [
+            { value: '6 hours' },
+            { value: '12 hours' },
+            { value: '1 day' },
+            { value: '3 days' },
+            { value: '7 days' },
+        ];
         return (
             <View>
                 <View style={styles.headerWrapper}>
                     <Text style={styles.header}>Network Usage</Text>
-                    <Button
-                        title='time'
-                        color='#ff8300'
-                        onPress={this.props.updateGraph}
+                    <Dropdown
+                        label='Time'
+                        data={ddData}
+                        value={ddData[0].value}
+                        onChangeText={this.changeDropdown}
+                        containerStyle={{ width: 100, position: "absolute", right: 0, top: -10 }}
                     />
                 </View>
                 <VictoryChart
@@ -98,13 +109,14 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         marginLeft: 10,
         marginRight: 10,
-        paddingBottom: 10,
+        paddingBottom: 15,
         marginBottom: 10,
         borderTopColor: '#076280',
         borderTopWidth: 5,
         borderBottomColor: '#ddd',
         borderBottomWidth: 1,
-        marginTop: 50
+        marginTop: 50,
+        position: 'relative'
     },
     header: {
         alignSelf: 'flex-start',
