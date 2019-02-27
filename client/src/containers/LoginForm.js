@@ -1,27 +1,23 @@
 import React, { Component } from "react";
 import { Card, CardSection, Input, Button, Spinner } from "./common";
 import { connect } from "react-redux";
-import { emailChanged, passwordChanged, loginUser, fetchMetrics,apiEntry,urlEntry } from "../actions";
+import { emailChanged, passwordChanged, loginUser } from "../actions";
 import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
 
 class LoginForm extends Component {
-
-  onAPIChange(text) {
-    this.props.apiEntry(text)
+  onEmailChange(text) {
+    this.props.emailChanged(text);
   }
 
-  onUrlChange(text) {
-    this.props.urlEntry(text)
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
   }
 
   onButtonPress() {
-    const { api, url } = this.props;
-
-    this.props.fetchMetrics({api, url});
+    const { email, password } = this.props;
+    this.props.loginUser({ email, password });
   }
-
-  
 
   isSigninInProgress() {
     return <Spinner size="large" />;
@@ -50,40 +46,31 @@ class LoginForm extends Component {
         <View style={{ height: 50 }}>
           <Button onPress={() => Actions.signup()}>Signup</Button>
         </View>
-        <CardSection>
-        <Input style={{ height: 90 }} value={'eyJrIjoiYmFnUmh5STVRM0xZTnljcDB4aGJ5akpsanRsa0M3RWMiLCJuIjoiYWRnZW5rZXkiLCJpZCI6MX0='} />
-        </CardSection>
-        <CardSection>
-        <Input style={{ height: 90 }} value={'35.232.120.147'} />
-        </CardSection>
       </View>
     );
   }
 
   render() {
     return (
-      <View style={{ backgroundColor: "#fff", flex: 1, marginTop: 50 }}>
+      <View style={{ backgroundColor: "#fff", flex: 1 }}>
         <Card>
           <CardSection>
             <Input
-              label="Grafana Url"
-              secureTextEntry
-              placeholder="Grafana Url"
-              onChangeText={this.onUrlChange.bind(this)}
-              value={this.props.url}
+              label="Email"
+              placeholder="email@gmail.com"
+              onChangeText={this.onEmailChange.bind(this)}
+              value={this.props.email}
             />
-  
           </CardSection>
           {this.renderError()}
           <CardSection>
             <Input
-              onChangeText={this.onAPIChange.bind(this)}
+              onChangeText={this.onPasswordChange.bind(this)}
               secureTextEntry
-              label="API Key"
-              placeholder="API Key"
-              value={this.props.api}
+              label="Password"
+              placeholder="password"
+              value={this.props.password}
             />
-             
           </CardSection>
           {this.renderButton()}
         </Card>
@@ -101,12 +88,12 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading,api,url } = auth;
+  const { email, password, error, loading } = auth;
 
-  return { email, password, error, loading,api,url };
+  return { email, password, error, loading };
 };
 
 export default connect(
   mapStateToProps,
-  { emailChanged, passwordChanged,apiEntry,urlEntry, loginUser, fetchMetrics }
+  { emailChanged, passwordChanged, loginUser }
 )(LoginForm);

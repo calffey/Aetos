@@ -13,20 +13,19 @@ class DashBoard extends Component {
     super(props);
     this.state = {
       refreshing: false
-    }
+    };
     this._onRefresh = this._onRefresh.bind(this);
   }
 
-
-  _onRefresh = function () {
+  _onRefresh = function() {
     this.setState({ refreshing: true });
     new Promise((resolve, reject) => {
-      this.props.fetchMetrics();
+      this.props.fetchMetrics({ apiKey, url });
       resolve();
     }).then(() => {
       this.setState({ refreshing: true });
     });
-  }
+  };
 
   render() {
     return (
@@ -36,53 +35,77 @@ class DashBoard extends Component {
             <Spinner size="large" />
           </View>
         ) : (
-            <ScrollView style={{ marginTop: 55 }}
-              refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh} />}>
-              {Object.keys(this.props).map((dataType, i) => {
-                if (dataType === "cpuUsage") {
-                  return (
-                    <View key={i}>
-                      <CpuUsageChart data={this.props[dataType]} changeTime={this.props.changeTime} />
-                    </View>
-                  );
-                } else if (dataType === "memUsage") {
-                  return (
-                    <View key={i}>
-                      <MemUsageChart data={this.props[dataType]} changeDropdown={this.props.changeDropdown} />
-                    </View>
-                  );
-                } else if (dataType === "networkTraffic") {
-                  return (
-                    <View key={i}>
-                      <NetworkChart data={this.props[dataType]} changeDropdown={this.props.changeDropdown} />
-                    </View>
-                  );
-                } else if (dataType === "saturation") {
-                  return (
-                    <View key={i}>
-                      <SaturationChart data={this.props[dataType]} changeDropdown={this.props.changeDropdown} />
-                    </View>
-                  );
-                }
-              })}
-            </ScrollView>
-          )}
+          <ScrollView
+            style={{ marginTop: 10 }}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            }
+          >
+            {Object.keys(this.props).map((dataType, i) => {
+              if (dataType === "cpuUsage") {
+                return (
+                  <View key={i}>
+                    <CpuUsageChart
+                      data={this.props[dataType]}
+                      changeTime={this.props.changeTime}
+                    />
+                  </View>
+                );
+              } else if (dataType === "memUsage") {
+                return (
+                  <View key={i}>
+                    <MemUsageChart
+                      data={this.props[dataType]}
+                      changeDropdown={this.props.changeDropdown}
+                    />
+                  </View>
+                );
+              } else if (dataType === "networkTraffic") {
+                return (
+                  <View key={i}>
+                    <NetworkChart
+                      data={this.props[dataType]}
+                      changeDropdown={this.props.changeDropdown}
+                    />
+                  </View>
+                );
+              } else if (dataType === "saturation") {
+                return (
+                  <View key={i}>
+                    <SaturationChart
+                      data={this.props[dataType]}
+                      changeDropdown={this.props.changeDropdown}
+                    />
+                  </View>
+                );
+              }
+            })}
+          </ScrollView>
+        )}
       </View>
     );
   }
 }
 
-const mapStateToProps = ({ metric}) => {
+const mapStateToProps = ({ metric, api }) => {
   const { isLoading, cpuUsage, memUsage, networkTraffic, saturation } = metric;
+  const { apiKey, url } = api;
   return { isLoading, cpuUsage, memUsage, networkTraffic, saturation };
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchMetrics: () => dispatch(actions.fetchMetrics()),
-  changeTime: (value, graphName) => dispatch(actions.fetchGraph(value, graphName))
+  changeTime: (value, graphName) =>
+    dispatch(actions.fetchGraph(value, graphName))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DashBoard);
 
 const styles = {
   container: {

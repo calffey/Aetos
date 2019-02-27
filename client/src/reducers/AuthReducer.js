@@ -6,46 +6,69 @@ import {
   SIGNUP_USER_FAIL,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER,
-  FETCH_METRICS_SUCCESS,
-  FETCH_METRICS_FAIL,
-  FETCH_METRICS,
-  URL_ENTRY,
-  API_KEY_ENTRY
+  LOGIN_USER
 } from "../actions/actionTypes";
 
 const INTIAL_STATE = {
   email: "",
   password: "",
-  api: "",
-  url:"",
+
   user: null,
   error: "",
   signupError: "",
-  loading: null,
-  cpuUsage: null,
-  memUsage: null,
-  networkTraffic: null,
-  saturation: null,
-  isLoading: null,
-  isLoggedIn: false
+  loading: null
 };
 
 export default (state = INTIAL_STATE, action) => {
-
   switch (action.type) {
-
-    case API_KEY_ENTRY:
-     return {
-       ...state,
-       api: action.payload
-     };
-    case URL_ENTRY: 
+    case EMAIL_CHANGED:
       return {
         ...state,
-        url: action.payload
+        email: action.payload
       };
- 
+
+    case PASSWORD_CHANGED:
+      return {
+        ...state,
+        password: action.payload
+      };
+    case SIGNUP_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+        email: "",
+        password: ""
+      };
+    case SIGNUP_USER:
+      return {
+        ...state,
+        loading: true,
+        error: ""
+      };
+    case SIGNUP_USER_FAIL:
+      return {
+        ...state,
+        signupError: "password must be at least 6 characters",
+        loading: false
+      };
+    case LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+        email: "",
+        password: ""
+      };
+    case LOGIN_USER_FAIL:
+      return { ...state, error: "Authentication Failed.", loading: false };
+    case LOGIN_USER:
+      return {
+        ...state,
+        loading: true,
+        error: ""
+      };
+
     default:
       return state;
   }
