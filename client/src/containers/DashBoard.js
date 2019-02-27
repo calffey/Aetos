@@ -17,9 +17,6 @@ class DashBoard extends Component {
     this._onRefresh = this._onRefresh.bind(this);
   }
 
-  componentDidMount() {
-    //this.props.fetchMetrics();
-  }
 
   _onRefresh = function () {
     this.setState({ refreshing: true });
@@ -27,7 +24,7 @@ class DashBoard extends Component {
       this.props.fetchMetrics();
       resolve();
     }).then(() => {
-      this.setState({ refreshing: false });
+      this.setState({ refreshing: true });
     });
   }
 
@@ -75,8 +72,8 @@ class DashBoard extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  const { isLoading, cpuUsage, memUsage, networkTraffic, saturation } = auth;
+const mapStateToProps = ({ metric}) => {
+  const { isLoading, cpuUsage, memUsage, networkTraffic, saturation } = metric;
   return { isLoading, cpuUsage, memUsage, networkTraffic, saturation };
 };
 

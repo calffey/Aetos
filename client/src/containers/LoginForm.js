@@ -4,23 +4,8 @@ import { connect } from "react-redux";
 import { emailChanged, passwordChanged, loginUser, fetchMetrics,apiEntry,urlEntry } from "../actions";
 import { View, Text } from "react-native";
 import { Actions } from "react-native-router-flux";
-// import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
 
 class LoginForm extends Component {
-  componentDidMount() {
-    // GoogleSignin.configure({
-    //   scopes: ["https://apis.google.com/js/platform.js"], // what API you want to access on behalf of the user, default is email and profile
-    //   iosClientId: ""
-    //   // "239528451353-lncotgbbmu7v150iiio499sfrv80un7i.apps.googleusercontent.com" // client ID of type WEB for your server
-    // });
-  }
-  // onEmailChange(text) {
-  //   this.props.emailChanged(text);
-  // }
-
-  // onPasswordChange(text) {
-  //   this.props.passwordChanged(text);
-  // }
 
   onAPIChange(text) {
     this.props.apiEntry(text)
@@ -69,7 +54,7 @@ class LoginForm extends Component {
         <Input style={{ height: 90 }} value={'eyJrIjoiYmFnUmh5STVRM0xZTnljcDB4aGJ5akpsanRsa0M3RWMiLCJuIjoiYWRnZW5rZXkiLCJpZCI6MX0='} />
         </CardSection>
         <CardSection>
-        <Input style={{ height: 90 }} value={'http://35.232.120.147/api/datasources/proxy/1/api/v1/query_range?'} />
+        <Input style={{ height: 90 }} value={'35.232.120.147'} />
         </CardSection>
       </View>
     );
