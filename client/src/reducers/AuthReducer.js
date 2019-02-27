@@ -6,24 +6,20 @@ import {
   SIGNUP_USER_FAIL,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER,
-  URL_ENTRY,
-  API_KEY_ENTRY
+  LOGIN_USER
 } from "../actions/actionTypes";
 
 const INTIAL_STATE = {
   email: "",
   password: "",
-  api: "",
-  url:"",
+
   user: null,
   error: "",
   signupError: "",
-
+  loading: null
 };
 
 export default (state = INTIAL_STATE, action) => {
-
   switch (action.type) {
     case EMAIL_CHANGED:
       return {
@@ -35,16 +31,6 @@ export default (state = INTIAL_STATE, action) => {
       return {
         ...state,
         password: action.payload
-      };
-    case API_KEY_ENTRY:
-     return {
-       ...state,
-       api: action.payload
-     };
-    case URL_ENTRY: 
-      return {
-        ...state,
-        url: action.payload
       };
     case SIGNUP_USER_SUCCESS:
       return {

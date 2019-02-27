@@ -38,7 +38,7 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <View style={{ backgroundColor: "#fff", flex: 1, marginTop: 50 }}>
+      <View style={{ backgroundColor: "#fff", flex: 1 }}>
         <Card>
           <CardSection>
             <Input

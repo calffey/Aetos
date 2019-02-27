@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
+import ApiReducer from "./ApiReducer";
+import MetricReducer from "./MetricReducer";
 import AuthReducer from "./AuthReducer";
-import MetricReducer from './MetricReducer'
 
 export default combineReducers({
   auth: AuthReducer,
+  api: ApiReducer,
   metric: MetricReducer
 });
