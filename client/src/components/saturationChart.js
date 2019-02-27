@@ -43,7 +43,7 @@ export default class SaturationChart extends Component {
                         label='Time'
                         data={ddData}
                         value={ddData[0].value}
-                        onChangeText={this.changeDropdown}
+                       // onChangeText={this.changeDropdown}
                         containerStyle={{ width: 100, position: "absolute", right: 0, top: -10 }}
                     />
                 </View>
