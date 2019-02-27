@@ -46,7 +46,7 @@ export default class CpuUsageChart extends Component {
                         label='Time'
                         data={ddData}
                         value={ddData[0].value}
-                        onChangeText={this.changeDropdown}
+                        //onChangeText={this.changeDropdown}
                         containerStyle={{ width: 100, position: "absolute", right: 0, top: -10 }}
                     />
                 </View>
@@ -62,7 +62,7 @@ export default class CpuUsageChart extends Component {
                         />
                     }
                 >
-                    <VictoryAxis dependentAxis />
+                    <VictoryAxis dependentAxis tickFormat={(x) => {return (x/1000).toFixed(1) + '%';}} />
                     <VictoryAxis
                         tickFormat={(x) => {
                             const date = new Date(x * 1000);

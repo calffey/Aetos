@@ -43,7 +43,7 @@ export default class NetworkChart extends Component {
                         label='Time'
                         data={ddData}
                         value={ddData[0].value}
-                        onChangeText={this.changeDropdown}
+                        //onChangeText={this.changeDropdown}
                         containerStyle={{ width: 100, position: "absolute", right: 0, top: -10 }}
                     />
                 </View>
@@ -61,7 +61,7 @@ export default class NetworkChart extends Component {
                 >
                     <VictoryAxis
                         dependentAxis
-                        tickFormat={(x) => x + 'kb/s'}
+                        tickFormat={(x) => (x/1000).toFixed(1) + 'kb/s'}
                     />
                     <VictoryAxis
                         tickFormat={(x) => {
