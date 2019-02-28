@@ -12,8 +12,7 @@ Upon authorization, you’ll be redirected to the metrics display where you can 
 
 
 #### How it works:
-<div style="text-align:center"><img src ="./assets/Aetos.gif" /></div>
-
+<div style="margin: 0 auto; width: 250px;"><img src ="./assets/Aetos.gif" /></div>
 
 Aetos uses PromQL, an industry-leading scraping language, in order to gather metrics in these key areas:
 CPU Usage: allows you to reveal system consumption and prevent bottlenecks that will hinder performance
@@ -28,9 +27,53 @@ Aetos is extremely easy to get up and running. Once you've downloaded the applic
 3. Enter the Grafana API key specific to your cluster.
 4. You will automatically be navigated to the display page.
 
-#### [Note: Aetos is in active development. An android version of this application will be available soon.]
-
 Optional: Navigate to the alerts page in order to set custom alerts.
+
+Click on each picture to enlarge.
+
+<table style="width:100%">
+<tr>
+
+  <td>
+    <a href="assets/login.jpg">
+    <p><b>Login</b></p>
+    <img src="assets/login.jpg" width="170">
+    </a>
+  </td>
+
+  <td>
+    <a href="assets/side-nav.jpg">
+    <p><b>Navigation</b></p>
+    <img src="assets/side-nav.jpg" width="170">
+    </a>
+  </td>
+
+  <td>
+    <a href="assets/profile.jpg">
+    <p><b>Credentials</b></p>
+    <img src="assets/profile.jpg" width="170">
+    </a>
+  </td>
+
+  <td>
+    <a href="assets/dashboard.jpg">
+    <p><b>Dashboard</b></p>
+    <img src="assets/dashboard.jpg" width="170">
+    </a>
+  </td>
+  
+
+  <td>
+    <a href="assets/alerts.jpg">
+    <p><b>Alerts</b></p>
+    <img src="assets/alerts.jpg" width="170">
+    </a>
+  </td>
+
+</tr>
+</table>
+
+#### [Note: Aetos is in active development. An android version of this application will be available soon.]
 
 ## Contributors
 
