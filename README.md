@@ -11,7 +11,8 @@ Simply log in to the Aetos application and enter the URL for where your Kubernet
 Upon authorization, you’ll be redirected to the metrics display where you can easily view and interact with real-time-data charts. You also have the option to set custom alerts on these metrics in order to be notified of any serious changes in your cluster’s performance.
 
 
-#### How it works:
+## How it works:
+
 <div style="margin: 0 auto; width: 250px;"><img src ="./assets/aetos-demo.gif" /></div>
 
 Aetos uses PromQL, an industry-leading scraping language, in order to gather metrics in these key areas:
