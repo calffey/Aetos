@@ -12,7 +12,7 @@ Upon authorization, you’ll be redirected to the metrics display where you can 
 
 
 #### How it works:
-<div style="margin: 0 auto; width: 250px;"><img src ="./assets/Aetos.gif" /></div>
+<div style="margin: 0 auto; width: 250px;"><img src ="./assets/aetos-demo.gif" /></div>
 
 Aetos uses PromQL, an industry-leading scraping language, in order to gather metrics in these key areas:
 CPU Usage: allows you to reveal system consumption and prevent bottlenecks that will hinder performance
