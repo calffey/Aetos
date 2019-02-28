@@ -6,28 +6,20 @@ import {
   SIGNUP_USER_FAIL,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER,
-  FETCH_METRICS_SUCCESS,
-  FETCH_METRICS_FAIL,
-  FETCH_METRICS
+  LOGIN_USER
 } from "../actions/actionTypes";
 
 const INTIAL_STATE = {
   email: "",
   password: "",
+
   user: null,
   error: "",
   signupError: "",
-  loading: false,
-  cpuUsage: null,
-  memUsage: null,
-  networkTraffic: null,
-  saturation: null,
-  isLoading: true
+  loading: null
 };
 
 export default (state = INTIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGED:
       return {
@@ -75,22 +67,6 @@ export default (state = INTIAL_STATE, action) => {
         ...state,
         loading: true,
         error: ""
-      };
-    case FETCH_METRICS_FAIL:
-      return { ...state, isLoading: true };
-    case FETCH_METRICS:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case FETCH_METRICS_SUCCESS:
-      return {
-        ...state,
-        cpuUsage: action.payload[0],
-        memUsage: action.payload[1],
-        networkTraffic: action.payload[2],
-        saturation: action.payload[3],
-        isLoading: false
       };
     default:
       return state;
