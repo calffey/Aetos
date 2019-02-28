@@ -152,7 +152,7 @@ queryController.getNetworkSaturation = (req, res, next) => {
   let endTime = Math.floor(Date.now() / 1000);
   let step = 30;
   let queryStr =
-    "sum(rate(node_network_receive_bytes[5m])) by (node) %20%2B%20 sum(rate(node_network_transmit_bytes[5m])) by (node)";
+    "sum(rate(node_network_receive_bytes[5m])) by (node) + sum(rate(node_network_transmit_bytes[5m])) by (node)";
   let urlVal = `${grafurl}query=${queryStr}&start=${startTime}&end=${endTime}&step=${step}`;
   request(
     {
