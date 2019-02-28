@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import * as firebase from "firebase";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import reducers from "./reducers";
-import ReduxThunk from "redux-thunk";
 import Router from "./Router";
+import { store, persistor } from "./configureStore";
+import { PersistGate } from "redux-persist/integration/react";
+import { Spinner } from "../src/containers/common";
+import * as firebase from "firebase";
 
 class App extends Component {
   componentWillMount() {
@@ -19,12 +19,16 @@ class App extends Component {
 
     firebase.initializeApp(config);
   }
+  renderLoading() {
+    return <Spinner size="large" />;
+  }
 
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <Router />
+        <PersistGate loading={this.renderLoading()} persistor={persistor}>
+          <Router />
+        </PersistGate>
       </Provider>
     );
   }

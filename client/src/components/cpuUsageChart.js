@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Picker } from "react-native";
+import { Dropdown } from 'react-native-material-dropdown';
 import {
     VictoryLine,
     VictoryChart,
-    VictoryTheme,
-    VictoryBar,
     VictoryAxis,
-    Data,
     VictoryZoomContainer,
     VictoryBrushContainer
 } from "victory-native";
@@ -15,6 +13,7 @@ export default class CpuUsageChart extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.changeDropdown = this.changeDropdown.bind(this);
     }
 
     handleZoom(domain) {
@@ -25,15 +24,30 @@ export default class CpuUsageChart extends Component {
         this.setState({ zoomDomain: domain });
     }
 
+    changeDropdown(value) {
+        this.props.changeTime(value, 'cpu');
+    }
+
     render() {
+
+        const ddData = [
+            { value: '6 hours' },
+            { value: '12 hours' },
+            { value: '1 day' },
+            { value: '3 days' },
+            { value: '7 days' },
+        ];
+
         return (
             <View>
                 <View style={styles.headerWrapper}>
                     <Text style={styles.header}>CPU Usage</Text>
-                    <Button
-                        title='time'
-                        color='#00b2ed'
-                        onPress={this.props.updateGraph}
+                    <Dropdown
+                        label='Time'
+                        data={ddData}
+                        value={ddData[0].value}
+                        //onChangeText={this.changeDropdown}
+                        containerStyle={{ width: 100, position: "absolute", right: 0, top: -10 }}
                     />
                 </View>
                 <VictoryChart
@@ -48,7 +62,7 @@ export default class CpuUsageChart extends Component {
                         />
                     }
                 >
-                    <VictoryAxis dependentAxis />
+                    <VictoryAxis dependentAxis tickFormat={(x) => {return (x/1000).toFixed(1) + '%';}} />
                     <VictoryAxis
                         tickFormat={(x) => {
                             const date = new Date(x * 1000);
@@ -95,13 +109,14 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         marginLeft: 10,
         marginRight: 10,
-        paddingBottom: 10,
+        paddingBottom: 15,
         marginBottom: 10,
         borderTopColor: '#00b2ed',
         borderTopWidth: 5,
         borderBottomColor: '#ddd',
         borderBottomWidth: 1,
-        marginTop: 10
+        marginTop: 10,
+        position: 'relative'
     },
     header: {
         alignSelf: 'flex-start',
