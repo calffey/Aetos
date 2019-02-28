@@ -1,8 +1,6 @@
 const request = require("request");
 const apiKey = process.env.API_KEY;
 const grafurl = process.env.API_URL;
-//const apiKey = "";
-//const grafurl = "";
 
 const reqHeader = {
   Accept: "application/json",
