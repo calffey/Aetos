@@ -1,6 +1,6 @@
 ![Aetos](assets/aetos-logo-horiz.jpg)
 
-### Aetos is a mobile application for monitoring the health & performance of GCE Kubernetes clusters.
+### Aetos is a mobile application for monitoring the health & performance of GKE Kubernetes clusters.
 
 Accessing real-time metrics of Kubernetes data is imperative in order to ensure proper cluster health & performance. But keeping an eye on these metrics can get tricky.
 
