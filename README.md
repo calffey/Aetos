@@ -78,4 +78,4 @@ Click on each picture to enlarge.
 
 ## Contributors
 
-[Robert McHalffey](https://github.com/calffey) | [Jay Cogen](https://github.com/JayCogen44) | [Tristan Schoenfeld](https://github.com/trischoe) | [Kenny Brisco](https://github.com/Kenneth-Brisco)
+[Robert McHalffey](https://github.com/calffey) | [Jay Cogen](https://github.com/JayCogen44) | [Tristan Schoenfeld](https://github.com/trischoe) | [Ken Brisco](https://github.com/Kenneth-Brisco)
