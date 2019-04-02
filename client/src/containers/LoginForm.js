@@ -2,18 +2,10 @@ import React, { Component } from "react";
 import { Card, CardSection, Input, Button, Spinner } from "./common";
 import { connect } from "react-redux";
 import { emailChanged, passwordChanged, loginUser } from "../actions";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Actions } from "react-native-router-flux";
-// import { GoogleSignin, GoogleSigninButton } from "react-native-google-signin";
 
 class LoginForm extends Component {
-  componentDidMount() {
-    // GoogleSignin.configure({
-    //   scopes: ["https://apis.google.com/js/platform.js"], // what API you want to access on behalf of the user, default is email and profile
-    //   iosClientId: ""
-    //   // "239528451353-lncotgbbmu7v150iiio499sfrv80un7i.apps.googleusercontent.com" // client ID of type WEB for your server
-    // });
-  }
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -25,12 +17,6 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
-  }
-
-  isSignIn() {
-    console.log("google");
-
-    console.log("why");
   }
 
   isSigninInProgress() {
@@ -55,7 +41,9 @@ class LoginForm extends Component {
     return (
       <View>
         <View style={{ height: 50, marginBottom: 4 }}>
-          <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
+          <Button onPress={this.onButtonPress.bind(this)} testID="login">
+            Login
+          </Button>
         </View>
         <View style={{ height: 50 }}>
           <Button onPress={() => Actions.signup()}>Signup</Button>
@@ -66,7 +54,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <View style={{ backgroundColor: "#fff", flex: 1, marginTop: 50 }}>
+      <View style={{ backgroundColor: "#e0e0e0", flex: 1 }}>
         <Card>
           <CardSection>
             <Input
