@@ -5,6 +5,7 @@ import { store, persistor } from "./configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { Spinner } from "../src/containers/common";
 import * as firebase from "firebase";
+import { View, Text } from "react-native";
 
 class App extends Component {
   componentWillMount() {
@@ -20,14 +21,18 @@ class App extends Component {
     firebase.initializeApp(config);
   }
   renderLoading() {
-    return <Spinner size="large" />;
+    return (
+      <View>
+        <Text testID="welcome">Welcome</Text>
+      </View>
+    );
   }
 
   render() {
     return (
       <Provider store={store}>
         <PersistGate loading={this.renderLoading()} persistor={persistor}>
-          <Router />
+          <Router testID="nav" />
         </PersistGate>
       </Provider>
     );

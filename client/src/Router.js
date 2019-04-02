@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Scene,
-  Router,
-  Drawer,
-  Actions,
-  Overlay
-} from "react-native-router-flux";
+import { Scene, Router, Drawer, Overlay } from "react-native-router-flux";
 import LoginForm from "./containers/LoginForm";
 import DashBoard from "./containers/DashBoard";
 import SignupForm from "./containers/SignupForm";
@@ -19,8 +13,26 @@ const RouterComponent = () => {
     <Router>
       <Overlay key="overlay">
         <Scene key="root">
-          <Scene key="auth" component={LoginForm} title="Login" initial />
-          <Scene key="signup" component={SignupForm} title="Signup" />
+          <Scene
+            navigationBarStyle={{ backgroundColor: "#eeeeee" }}
+            onLeft={() => "Aetos"}
+            leftTitle="Aetos"
+            onRight={() => "Login"}
+            key="auth"
+            component={LoginForm}
+            rightTitle="Login"
+            rightButtonTextStyle={{ color: "#000000" }}
+            initial
+          />
+          <Scene
+            navigationBarStyle={{ backgroundColor: "#eeeeee" }}
+            key="signup"
+            component={SignupForm}
+            backTitle="Login"
+            onRight={() => "Signup"}
+            rightTitle="Signup"
+            rightButtonTextStyle={{ color: "#000000" }}
+          />
 
           <Drawer
             hideNavBar
@@ -29,8 +41,22 @@ const RouterComponent = () => {
             drawerIcon={<Icon name="ios-menu" />}
             drawerWidth={300}
           >
-            <Scene key="main" title="Aetos" component={DashBoard} />
-            <Scene key="profile" title="Profile" component={Profile} />
+            <Scene
+              key="main"
+              title="Aetos"
+              component={DashBoard}
+              rightTitle="Dashboard"
+              titleStyle={{ color: "#00b2ed", fontSize: 30 }}
+              rightButtonTextStyle={{ color: "#000000" }}
+              onRight={() => "Dash"}
+            />
+            <Scene
+              key="profile"
+              component={Profile}
+              rightButtonTextStyle={{ color: "#000000" }}
+              onRight={() => "Dash"}
+              rightTitle="Profile"
+            />
           </Drawer>
         </Scene>
       </Overlay>
