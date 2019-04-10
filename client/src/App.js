@@ -10,12 +10,12 @@ import { View, Text } from "react-native";
 class App extends Component {
   componentWillMount() {
     const config = {
-      apiKey: "AIzaSyAH-_0tusXB2WmLNgnpYT9CRkNLi8fH5VI",
-      authDomain: "authentication-7993c.firebaseapp.com",
-      databaseURL: "https://authentication-7993c.firebaseio.com",
-      projectId: "authentication-7993c",
-      storageBucket: "authentication-7993c.appspot.com",
-      messagingSenderId: "756485903649"
+      apiKey: "ENTER API KEY",
+      authDomain: "ENTER AUTH DOMAIN",
+      databaseURL: "ENTER DATABASE URL",
+      projectId: "ENTER PROJECT ID",
+      storageBucket: "ENTER STORAGE BUCKETT",
+      messagingSenderId: "ENTER MESSAGING SENDER ID"
     };
 
     firebase.initializeApp(config);
