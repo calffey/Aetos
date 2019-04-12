@@ -10,7 +10,6 @@ Simply log in to the Aetos application and enter the URL for where your Kubernet
 
 Upon authorization, you’ll be redirected to the metrics display where you can easily view and interact with real-time-data charts. You also have the option to set custom alerts on these metrics in order to be notified of any serious changes in your cluster’s performance.
 
-
 ## How it works:
 
 <div style="margin: 0 auto; width: 250px;"><img src ="./assets/aetos-demo.gif" /></div>
@@ -21,6 +20,7 @@ Memory Usage: systems that run up against memory limits will begin to swap in or
 Network Saturation & System Saturation: making sure that saturation stays below your pre-determined acceptable levels, alerting you of possible DOS attacks and helping you preventing unnecessary collisions in the long run.
 
 ## Getting Started with Aetos
+
 Aetos is extremely easy to get up and running. Once you've downloaded the application from the iOS app store (Android version launching soon), do the following:
 
 1. Enter your login information on the login page.
@@ -62,7 +62,7 @@ Click on each picture to enlarge.
     <img src="assets/dashboard.jpg" width="170">
     </a>
   </td>
-  
+
 
   <td>
     <a href="assets/alerts.jpg">

@@ -17,6 +17,7 @@ class DashBoard extends Component {
     this._onRefresh = this._onRefresh.bind(this);
   }
 
+  // _onRefresh fetches updated metric data
   _onRefresh = function() {
     this.setState({ refreshing: true });
     new Promise((resolve, reject) => {
@@ -38,6 +39,7 @@ class DashBoard extends Component {
           <ScrollView
             style={{ marginTop: 10 }}
             refreshControl={
+              //RefreshControl component - is a React Native component that improves scrolling performance
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this._onRefresh}

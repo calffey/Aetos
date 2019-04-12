@@ -12,7 +12,6 @@ import {
 const INTIAL_STATE = {
   email: "",
   password: "",
-
   user: null,
   error: "",
   signupError: "",

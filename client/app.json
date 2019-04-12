@@ -1,4 +1,10 @@
 {
   "name": "client",
-  "displayName": "client"
+  "displayName": "Aetos",
+  "icon": "./icon.png",
+  "description": "Metrics on the go for your Kubernetes cluster",
+  "version": "1.0.0",
+  "ios": {
+    "bundleIdentifier": "com.scodavinci.aetos"
+  }
 }

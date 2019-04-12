@@ -95,7 +95,6 @@ export const urlEntry = text => {
 };
 
 export const fetchMetrics = ({ apiKey, url }) => {
-  console.log(apiKey, url, "key and url");
   return dispatch => {
     dispatch({ type: FETCH_METRICS });
     let api = apiKey;
@@ -109,10 +108,10 @@ export const fetchMetrics = ({ apiKey, url }) => {
     let queryMem =
       "1 - sum(node_memory_MemAvailable) by (node) / sum(node_memory_MemTotal) by (node)";
     let urlValMem = `${grafurl}query=${queryMem}&start=${startTime}&end=${endTime}&step=${step}`;
-    //let queryNetSat ='sum(rate(node_network_receive_bytes[5m])) by (node) + sum(rate(node_network_transmit_bytes[5m])) by (node)';
+
     let queryNetSat = "sum(rate(node_network_receive_bytes[5m])) by (node)";
     let urlValNetSat = `${grafurl}query=${queryNetSat}&start=${startTime}&end=${endTime}&step=${step}`;
-    //let urlNetSatOne = encodeURI(urlValNetSat);
+
     let queryNetSatTrans =
       "sum(rate(node_network_transmit_bytes[5m])) by (node)";
     let urlValNetSatTrans = `${grafurl}query=${queryNetSatTrans}&start=${startTime}&end=${endTime}&step=${step}`;
@@ -129,11 +128,9 @@ export const fetchMetrics = ({ apiKey, url }) => {
         }
       })
         .then(data => {
-          console.log("return from cpu fetch call ", data);
           return data.json();
         })
         .then(json => {
-          console.log("cpu");
           let dataArray = [];
           let lastItem;
           json.data.result[0].values.forEach((val, i) => {
@@ -141,12 +138,10 @@ export const fetchMetrics = ({ apiKey, url }) => {
             val = { x: val[0], y: Number(val[1] * 100000) };
             dataArray.push(val);
           });
-          console.log(lastItem);
           return dataArray;
         })
         .catch(err => console.log(err)),
 
-      //fetch("http://localhost:3477/memoryutilization")
       fetch(urlValMem, {
         method: "GET",
         headers: {
@@ -165,7 +160,7 @@ export const fetchMetrics = ({ apiKey, url }) => {
           return dataArray;
         })
         .catch(err => console.log(err)),
-      //fetch("http://localhost:3477/networktraffic")
+
       fetch(urlValNetSat, {
         method: "GET",
         headers: {
@@ -184,7 +179,7 @@ export const fetchMetrics = ({ apiKey, url }) => {
           return dataArray;
         })
         .catch(err => console.log(err)),
-      //fetch("http://localhost:3477/saturation")
+
       fetch(urlValSat, {
         method: "GET",
         headers: {
