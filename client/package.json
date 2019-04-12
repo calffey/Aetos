@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test": "jest --verbose"
   },
   "dependencies": {
     "firebase": "^5.8.3",
     "native-base": "^2.11.0",
     "react": "16.6.3",
     "react-native": "0.58.4",
+    "react-native-cli": "^2.0.1",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-push-notification": "^3.1.2",
