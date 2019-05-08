@@ -1,7 +1,6 @@
 import * as actions from '../src/actions/index';
 import * as types from '../src/actions/actionTypes';
-// import configureMockStore from 'redux-mock-store';
-// import fetchMock from 'fetch-mock';
+
 
 
 
@@ -27,14 +26,3 @@ describe('actions', () => {
     
 })
 
-
-// Using Dependency Injection to test async cloud functions (i.e. Firebase Login)
-
-// describe('async actions', () => {
-//     afterEach(() => {
-//         fetchMock.restore()
-//     })
-
-//     it('creates ')
-
-// })
